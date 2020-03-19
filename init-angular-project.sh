@@ -59,7 +59,7 @@ echo "Creating Github Actions workflow configuration: ${PROJECTNAME}/.github/wor
 mkdir -p ${PROJECTNAME}/.github/workflows && ls -ld ${PROJECTNAME}/.github/workflows
 cp github-actions-main.yml ${PROJECTNAME}/.github/workflows/main.yml
 ls -l ${PROJECTNAME}/.github/workflows
-sed -i'' -e "s/PROJECTNAME/${PROJECTNAME}/g" ${PROJECTNAME}/.github/workflows/main.yml
+sed -e "s/PROJECTNAME/${PROJECTNAME}/g" -i '' ${PROJECTNAME}/.github/workflows/main.yml
 echo
 echo "cat ${PROJECTNAME}/.github/workflows/main.yml"
 echo "---------------------------------------------"
