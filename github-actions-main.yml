@@ -1,0 +1,43 @@
+name: Deploy to GitHub Pages via angular-cli-ghpages
+
+#on: [push]
+
+on:
+  push:
+    branches:
+    - master
+    - release/*  # branches matching refs/heads/release/*
+    - gh-pages
+
+#on:
+#  schedule:
+#    - cron: 0 2 * * 1-5
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Use Node.js 13.x
+      uses: actions/setup-node@v1
+      with:
+        node-version: 13.x
+
+    - name: Prepare and deploy
+      env:
+        GH_TOKEN: ${{ secrets.GH_TOKEN }}
+      run: |
+        npm install
+        npm run lint
+        ###
+        # Configure Angular first!
+        ####
+        # npm test -- --watch=false --progress=false --browsers=ChromeHeadlessCI
+        # npm run webdriver-update-ci
+        # npm run e2e -- --protractor-config=e2e/protractor-ci.conf.js --webdriver-update=false
+        ####
+        npm run ng -- deploy --base-href=/PROJECTNAME/ --name="Jesse Sandbox" --email=jesse@crowdskout.com
+        #npm run ng -- deploy --base-href=/PROJECTNAME/
