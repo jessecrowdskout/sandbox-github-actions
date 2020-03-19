@@ -37,7 +37,7 @@ echo
 echo "Github Repository creation:"
 echo "--------------------------"
 #TODO: use Github API for these steps rather than manually performing them
-echo "manually: create public repo named ${PROJECTNAME} in Github web UI"
+echo "manually: create public repo named ${PROJECTNAME} in Github web UI https://github.com/new"
 echo
 read -n 1 -s -r -p "Press any key to continue..."
 echo
@@ -55,11 +55,11 @@ read -n 1 -s -r -p "Press any key to continue..."
 echo
 
 
-echo "Creating Github Actions configuration: ${PROJECTNAME}/.github/workflows/main.yml"
+echo "Creating Github Actions workflow configuration: ${PROJECTNAME}/.github/workflows/main.yml"
 mkdir -p ${PROJECTNAME}/.github/workflows && ls -ld ${PROJECTNAME}/.github/workflows
 cp github-actions-main.yml ${PROJECTNAME}/.github/workflows/main.yml
 ls -l ${PROJECTNAME}/.github/workflows
-sed -i -e'' "s/PROJECTNAME/${PROJECTNAME}/g" ${PROJECTNAME}/.github/workflows/main.yml
+sed -i'' -e "s/PROJECTNAME/${PROJECTNAME}/g" ${PROJECTNAME}/.github/workflows/main.yml
 echo
 echo "cat ${PROJECTNAME}/.github/workflows/main.yml"
 echo "---------------------------------------------"
